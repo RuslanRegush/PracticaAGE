@@ -1,0 +1,136 @@
+﻿@page "/cereres/edit"
+@using Microsoft.EntityFrameworkCore
+@using BlazorAppIdentityDotNet.Data.Models
+@inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+@rendermode InteractiveServer
+<PageTitle>Edit</PageTitle>
+
+
+<h2>Modificarea cererei</h2>
+<hr />
+@if (Cerere is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Cerere" OnValidSubmit="UpdateCerere" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <input type="hidden" name="Cerere.CerereId" value="@Cerere.CerereId" />
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">FirstName:</label>
+                    <InputText id="firstname" @bind-Value="Cerere.FirstName" class="form-control" />
+                    <ValidationMessage For="() => Cerere.FirstName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">LastName:</label>
+                    <InputText id="lastname" @bind-Value="Cerere.LastName" class="form-control" />
+                    <ValidationMessage For="() => Cerere.LastName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="birthdate" class="form-label">BirthDate:</label>
+                    <InputDate id="birthdate" @bind-Value="Cerere.BirthDate" class="form-control" />
+                    <ValidationMessage For="() => Cerere.BirthDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="idnp" class="form-label">IDNP:</label>
+                    <InputText id="idnp" @bind-Value="Cerere.IDNP" class="form-control" />
+                    <ValidationMessage For="() => Cerere.IDNP" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="categoryid" class="form-label">Categorie:</label>
+                    <InputSelect id="categoryid" @bind-Value="Cerere.CategoryId" class="form-control">
+                        <option></option>
+                        @foreach (var category in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
+                        {
+                            <option value="@((int)category)">@category</option>
+                        }
+                    </InputSelect>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvează</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+
+@code {
+
+    private int CerereId { get; set; }
+
+    [SupplyParameterFromForm]
+    private Cerere? Cerere { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        var email = user.Identity?.Name;
+        try
+        {
+            using var context = DbFactory.CreateDbContext();
+
+            // Retrieve the user by email to get the UserId
+            var userEntity = await context.Users
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (userEntity == null)
+            {
+                Console.WriteLine("User not found.");
+                return;
+            }
+
+            // Retrieve the Cerere by UserId
+            Cerere = await context.Cerere.FirstOrDefaultAsync(c => c.UserId == userEntity.Id);
+
+            if (Cerere == null)
+            {
+                Console.WriteLine("No Cerere found for this user.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+
+    }
+
+    private async Task UpdateCerere()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Cerere!).State = EntityState.Modified;
+
+        try
+        {
+            Cerere.StateId = 1;
+            Cerere.Message = "";
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!CerereExists(Cerere!.CerereId))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/cererea");
+    }
+
+
+    private bool CerereExists(int cerereid)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Cerere.Any(e => e.CerereId == cerereid);
+    }
+}

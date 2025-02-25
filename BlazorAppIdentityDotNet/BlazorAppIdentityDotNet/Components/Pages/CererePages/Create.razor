@@ -1,0 +1,113 @@
+﻿@page "/cereres/create"
+@using BlazorAppIdentityDotNet.Data
+@using Microsoft.EntityFrameworkCore
+@using BlazorAppIdentityDotNet.Data.Models
+@using System.ComponentModel.DataAnnotations
+@using System.Text
+@using System.Text.Encodings.Web
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.WebUtilities
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
+@inject UserManager<ApplicationUser> UserManager
+@* @inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory *@
+@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Cerere Nouă</PageTitle>
+
+<h1>Crearea cererii</h1>
+
+<p></p>
+<h2>Sunteți logat ca: @UserEmail</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Cerere" OnValidSubmit="AddCerere" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="firstname" class="form-label">Prenume:</label> 
+                <InputText id="firstname" @bind-Value="Cerere.FirstName" class="form-control" /> 
+                <ValidationMessage For="() => Cerere.FirstName" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="lastname" class="form-label">Nume:</label> 
+                <InputText id="lastname" @bind-Value="Cerere.LastName" class="form-control" /> 
+                <ValidationMessage For="() => Cerere.LastName" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="birthdate" class="form-label">Data nașterii:</label> 
+                <InputDate id="birthdate" @bind-Value="Cerere.BirthDate" class="form-control" /> 
+                <ValidationMessage For="() => Cerere.BirthDate" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="idnp" class="form-label">IDNP:</label> 
+                <InputText id="idnp" @bind-Value="Cerere.IDNP" class="form-control" /> 
+                <ValidationMessage For="() => Cerere.IDNP" class="text-danger" /> 
+            </div>        
+
+
+            <div class="mb-3">
+                <label for="categoryid" class="form-label">Categorie:</label>
+                <InputSelect id="categoryid" @bind-Value="Cerere.CategoryId" class="form-control">
+                    <option></option>
+                    @foreach (var category in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
+                    {
+                        <option value="@((int)category)">@category</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Cerere.CategoryId" class="text-danger" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Trimite</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/cereres">Înnapoi</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Cerere Cerere { get; set; } = new();
+    private String UserEmail="";
+    public string errorMessage = "";
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            var appUser = await UserManager.GetUserAsync(user);
+            if (appUser != null)
+            {
+                UserEmail = appUser.Email;
+                Cerere.UserId = appUser.Id;
+                Cerere.Message = "";
+            }
+        }
+    }
+    private async Task AddCerere()
+    {
+        using var context = DbFactory.CreateDbContext();
+        if(
+            Cerere.FirstName != null &&
+            Cerere.LastName != null &&
+            Cerere.IDNP != null &&
+            Cerere.CerereId != null
+
+        )
+        {
+            Cerere.CreateTime = DateTime.Today;
+            Cerere.StateId = 1;
+            context.Cerere.Add(Cerere);
+            await context.SaveChangesAsync();
+            NavigationManager.NavigateTo("/cererea");
+        }
+    }
+
+}

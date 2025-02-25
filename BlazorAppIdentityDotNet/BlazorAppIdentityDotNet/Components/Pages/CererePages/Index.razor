@@ -1,0 +1,138 @@
+﻿@page "/cereres"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorAppIdentityDotNet.Data.Models
+@using BlazorAppIdentityDotNet.Data
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@attribute [Authorize(Roles = "Admin")]
+@inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+@implements IAsyncDisposable
+@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@rendermode InteractiveServer
+<PageTitle>Pagina cereri</PageTitle>
+
+<h1>Cereri</h1>
+
+<p>
+    <a href="cereres/create">Creați o cerere</a>
+</p>
+<div class="px-1">
+    <h5>Numărul de lemente pe pagină</h5>
+    <select class="form-select form-select-sm" @onchange="OnPageSizeChanged">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+</div>
+<div class="d-flex flex-row">
+    <!-- Dropdown to select filtering criteria -->
+    <select class="form-select form-select-sm me-2" @bind="SelectedFilter">
+        <option value="FirstName">Prenume</option>
+        <option value="LastName">Nume</option>
+    </select>
+
+    <!-- Input for name filtering -->
+    <input class="form-control form-control-sm me-2" @bind="FilterText" placeholder="Introduceți numele sau prenumele" />
+
+    <!-- Dropdown for filtering by StareEnum -->
+    <select class="form-select form-select-sm me-2" @bind="SelectedStateFilter">
+        <option value="">Ttoate statuturile</option>
+        @foreach (var state in Enum.GetValues<StareEnum>())
+        {
+            <option value="@state">@state</option>
+        }
+    </select>
+
+    <!-- Date range filter -->
+    <table>
+        <tr>
+            <th>De la:</th>
+            <th>Până la:</th>
+        </tr>
+        <tr>
+            <th><input type="date" class="form-control form-control-sm me-2" @bind="StartDateFilter" /></th>
+            <th><input type="date" class="form-control form-control-sm me-2" @bind="EndDateFilter" /></th>
+        </tr>
+    </table>
+    
+    
+
+    <!-- Button to apply filters -->
+    <button class="btn btn-primary btn-sm ms-1" @onclick="LoadData">Filtrare</button>
+</div>
+
+
+<QuickGrid Class="table"
+           Items="@(itemsQueryable
+    .Where(x =>
+        (SelectedFilter == "FirstName" && x.FirstName.Contains(FilterText, StringComparison.OrdinalIgnoreCase))
+        || (SelectedFilter == "LastName" && x.LastName.Contains(FilterText, StringComparison.OrdinalIgnoreCase)))
+    .Where(x => string.IsNullOrEmpty(SelectedStateFilter) || GetStateEnumName(x.StateId) == SelectedStateFilter)
+    .Where(x => (!StartDateFilter.HasValue || x.CreateTime.Date >= StartDateFilter.Value.Date)
+        && (!EndDateFilter.HasValue || x.CreateTime.Date <= EndDateFilter.Value.Date))
+    .AsQueryable())"
+           Pagination="paginationState">
+    <PropertyColumn Property="cerere => cerere.FirstName" Sortable="true" Title="Prenume" />
+    <PropertyColumn Property="cerere => cerere.LastName" Sortable="true" Title="Nume" />
+    <PropertyColumn Property="cerere => cerere.BirthDate" Title="Data nașterii" />
+    <PropertyColumn Property="cerere => cerere.IDNP" Title="IDNP" />
+    <PropertyColumn Property="cerere => cerere.CategoryId" Sortable="true" Title="Categorie" />
+    <TemplateColumn Context="cerere" Title="Statut">
+            @GetStateEnumName(cerere.StateId)
+    </TemplateColumn>
+    <PropertyColumn Property="cerere => cerere.Message" Title="Mesaj de restricție" />
+    <PropertyColumn Property="cerere => cerere.CreateTime" Title="Data de creare" Format="dd-MM-yyyy hh:mm tt" Sortable="true" IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Descending" />
+    
+
+    <TemplateColumn Context="cerere">
+        <a href="@($"cereres/AdminEdit?cerereid={cerere.CerereId}")">Modifică</a> |
+        @* <a href="@($"cereres/details?cerereid={cerere.CerereId}")">Șterge</a> | *@
+        <a href="@($"cereres/delete?cerereid={cerere.CerereId}")">Șterge</a>
+    </TemplateColumn>
+    <Paginator State="paginationState"></Paginator>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+    private PaginationState paginationState = new PaginationState { ItemsPerPage = 10 };
+    private string? userNameFilter;
+    private List<Cerere> filteredCerere = new();
+    List<Cerere>? itemsQueryable;
+    private string NameFilter { get; set; } = "";
+    private string SelectedFilter { get; set; } = "FirstName";
+    private string FilterText { get; set; } = "";
+    private string SelectedStateFilter { get; set; } = "";
+    private DateTime? StartDateFilter { get; set; }
+    private DateTime? EndDateFilter { get; set; }
+    protected async override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+        itemsQueryable = context.Cerere.ToList();
+        await LoadData();
+    }
+
+    public async Task LoadData()
+    {
+        // Recalculate pagination state after filtering
+        paginationState = new PaginationState { ItemsPerPage = paginationState.ItemsPerPage };
+    }
+
+
+    public string GetStateEnumName(int stateId)
+    {
+        return Enum.GetName(typeof(StareEnum), stateId) ?? "Unknown";
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+
+    private void OnPageSizeChanged(ChangeEventArgs e)
+    {
+        if (e.Value is not null)
+        {
+            paginationState.ItemsPerPage = int.Parse((string)e.Value);
+        }
+    }
+}

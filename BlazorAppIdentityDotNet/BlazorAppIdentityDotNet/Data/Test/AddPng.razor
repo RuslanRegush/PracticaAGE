@@ -1,0 +1,61 @@
+﻿@page "/addPng"
+@using Microsoft.AspNetCore.Components.Forms
+@using System.IO
+
+<h5>Adaugati Foto a formularului 623 de la comisia medicală</h5>
+
+<InputFile OnChange="OnInputFileChange" accept=".png" />
+<p>@uploadMessage</p>
+
+@code {
+    private string uploadMessage = "Aștept încărcarea...";
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        Console.WriteLine("metoda");
+        if (file == null)
+        {
+            uploadMessage = "Nici un fișier nu este selectat.";
+            Console.WriteLine("file is null");
+            StateHasChanged();
+            return;
+        }
+
+        if (!file.ContentType.Equals("image/png", StringComparison.OrdinalIgnoreCase))
+        {
+            uploadMessage = "Doar fișiere PNG sunt suportate.";
+            Console.WriteLine("file is not png format");
+            StateHasChanged();
+            return;
+        }
+
+        try
+        {
+            // Ensure 'uploads' folder exists
+            var uploadFolder = Path.Combine("wwwroot", "uploads");
+            if (!Directory.Exists(uploadFolder))
+            {
+                Directory.CreateDirectory(uploadFolder);
+            }
+
+            // Generate a unique file name
+            var fileName = $"{Guid.NewGuid()}.png";
+            var path = Path.Combine(uploadFolder, fileName);
+
+            // Save file (Allow up to 10 MB)
+            await using var stream = new FileStream(path, FileMode.Create);
+            await file.OpenReadStream(10 * 1024 * 1024).CopyToAsync(stream);
+
+            uploadMessage = $"Fișierul a fost încărcat cu succes: {fileName}";
+            Console.WriteLine("file is uploaded");
+        }
+        catch (Exception ex)
+        {
+            uploadMessage = $"Încărcarea a eșuat: {ex.Message}";
+            Console.WriteLine($"file is not uploaded: {ex.Message}");
+        }
+
+        StateHasChanged(); // Force UI update
+    }
+}

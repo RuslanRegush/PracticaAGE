@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
+              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-20T09:15:50.307Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

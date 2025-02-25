@@ -1,0 +1,58 @@
+﻿@page "/cereres/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorAppIdentityDotNet.Data.Models
+@inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Cerere</h2>
+    <hr />
+    @if (cerere is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">FirstName</dt>
+            <dd class="col-sm-10">@cerere.FirstName</dd>
+            <dt class="col-sm-2">LastName</dt>
+            <dd class="col-sm-10">@cerere.LastName</dd>
+            <dt class="col-sm-2">BirthDate</dt>
+            <dd class="col-sm-10">@cerere.BirthDate</dd>
+            <dt class="col-sm-2">IDNP</dt>
+            <dd class="col-sm-10">@cerere.IDNP</dd>
+            <dt class="col-sm-2">CategoryId</dt>
+            <dd class="col-sm-10">@cerere.CategoryId</dd>
+            <dt class="col-sm-2">StateId</dt>
+            <dd class="col-sm-10">@cerere.StateId</dd>
+            <dt class="col-sm-2">UserId</dt>
+            <dd class="col-sm-10">@cerere.UserId</dd>
+        </dl>
+        <div>
+            <a href="@($"/cereres/edit?cerereid={cerere.CerereId}")">Edit</a> |
+            <a href="@($"/cereres")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Cerere? cerere;
+
+    [SupplyParameterFromQuery]
+    private int CerereId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        cerere = await context.Cerere.FirstOrDefaultAsync(m => m.CerereId == CerereId);
+
+        if (cerere is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
