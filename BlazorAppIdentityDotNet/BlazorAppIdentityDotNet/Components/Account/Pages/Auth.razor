@@ -3,87 +3,68 @@
 @using BlazorAppIdentityDotNet.Data.Models
 @inject NavigationManager NavigationManager
 @inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
-@using Microsoft.AspNetCore.Authorization
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@attribute [Authorize]
+
 @rendermode InteractiveServer
 
 <PageTitle>Cerere</PageTitle>
+<h2>Sunteți logat ca: @UserName</h2>
+<p></p>
+@if (Cerere == null)
+{
+    <button type="button" class="btn btn-primary" @onclick="LinkToCreateCerere">Cerere nouă</button>
+}
+else
+{
+    <div>
+        <p>
+            <strong>Stare cerere: </strong>
+            @Cerere.State
+        </p>
 
-<AuthorizeView>
-    <p>Bun venit @context.User.Identity?.Name</p>
-    <p></p>
-
-    @if (Cerere == null)
-    {
-        <button type="button" class="btn btn-primary" @onclick="LinkToCreateCerere">Cerere nouă</button>
-    }
-    else
-    {
-        <div>
-            <p>
-                <strong>Stare cerere: </strong>
-                @Enum.GetName(typeof(StareEnum), Cerere.StateId)
-            </p>
-
-            @if (!string.IsNullOrEmpty(Cerere.Message))
-            {
-                <p><strong>Cauza respingerii:</strong> @Cerere.Message</p>
-            }
-        </div>
-        <button type="button" class="btn btn-primary" @onclick="LinkToEditCerere">Editează cererea</button>
-    }
-</AuthorizeView>
+        @if (!string.IsNullOrEmpty(Cerere.Message))
+        {
+            <p><strong>Cauza respingerii:</strong> @Cerere.Message</p>
+        }
+    </div>
+    <button type="button" class="btn btn-primary" @onclick="LinkToEditCerere">Editează cererea</button>
+}
 
 @code {
-    private Cerere Cerere { get; set; } = null;
-
+    private Cerere? Cerere { get; set; }
+    public string UserName = "";
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
-
-        if (user.Identity?.IsAuthenticated == true)
+        try
         {
-            var email = user.Identity?.Name;
-            Console.WriteLine("User email: " + email);
+            using var context = DbFactory.CreateDbContext();
 
-            if (string.IsNullOrEmpty(email))
+            // Obține cererea utilizatorului din DB folosind IDNP-ul salvat în autentificare
+            //var userId = string.Concat(user.FindFirst(c => c.Type == "Username")?.Value ?? "");
+            var userId = user.FindFirst(c => c.Type == "Username")?.Value ?? "";
+
+            UserName = string.Concat(user.FindFirst(c => c.Type == "FirstName")?.Value ?? "Anonim");
+            if (string.IsNullOrEmpty(userId))
             {
-                Console.WriteLine("User email is null or empty");
+                Console.WriteLine("User ID not found.");
                 return;
             }
 
-            try
+            Cerere = await context.Cerere.FirstOrDefaultAsync(c => c.IDNP == userId);
+            if (Cerere == null)
             {
-                using var context = DbFactory.CreateDbContext();
-
-                // Retrieve the user by email to get the UserId
-                var userEntity = await context.Users
-                    .FirstOrDefaultAsync(u => u.Email == email);
-
-                if (userEntity == null)
-                {
-                    Console.WriteLine("User not found.");
-                    return;
-                }
-
-                // Retrieve the Cerere by UserId
-                Cerere = await context.Cerere.FirstOrDefaultAsync(c => c.UserId == userEntity.Id);
-
-                if (Cerere == null)
-                {
-                    Console.WriteLine("No Cerere found for this user.");
-                }
+                Console.WriteLine("No Cerere found for this user.");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
 
-    private void  LinkToCreateCerere()
+    private void LinkToCreateCerere()
     {
         NavigationManager.NavigateTo("/cereres/create");
     }

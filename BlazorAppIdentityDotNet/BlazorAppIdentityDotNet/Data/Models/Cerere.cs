@@ -21,12 +21,10 @@ namespace BlazorAppIdentityDotNet.Data.Models
         [RegularExpression("^[02][0-9]{12}$", ErrorMessage = "IDNP trebuie să înceapă cu 0 sau 2 și să conțină exact 13 cifre.")]
 
         public string IDNP { get; set; }
-        [Required(ErrorMessage = "Alegeți Categoria")]
-        public int CategoryId { get; set; }
+        [Required(ErrorMessage = "Nu ați ales categoria")]
+        public string? Category { get; set; }
 
-        public int StateId { get; set; }
-        [Required]
-        public string UserId { get; set; }
+        public string State { get; set; }
         public string Message { get; set; }
 
         public DateTime CreateTime { get; set; }

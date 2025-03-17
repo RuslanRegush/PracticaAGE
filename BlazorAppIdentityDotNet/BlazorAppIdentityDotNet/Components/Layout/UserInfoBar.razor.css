@@ -1,0 +1,41 @@
+﻿.user-info-bar {
+    position: fixed; /* Keeps it at the top */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures it stretches the full width of the page */
+    min-height: 3.5rem;
+    background: linear-gradient(180deg, rgb(5, 39, 103) 0%);
+    z-index: 1050; /* Keeps it above other elements */
+    padding: 0.5rem 1rem;
+}
+}
+.container-fluid {
+    display: flex;
+    justify-content: flex-end; /* Move elements to the right */
+    align-items: center;
+    width: 100%;
+}
+
+.bi {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 10px;
+}
+.bi-plus-square-fill {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-person-circle' viewBox='0 0 16 16'%3E  %3Cpath d='M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0'/%3E  %3Cpath fill-rule='evenodd' d='M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1'/%3E %3C/svg%3E");
+}
+.buttonUserInfoBar {
+    background: linear-gradient(180deg, rgb(5, 39, 103) 0%);
+    border: 0px;
+}
+.buttonPerson {
+    background: linear-gradient(180deg, rgb(5, 39, 103) 0%);
+    border: 0px;    
+    color: white;
+}
+

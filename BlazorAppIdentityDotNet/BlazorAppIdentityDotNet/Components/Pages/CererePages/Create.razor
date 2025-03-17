@@ -9,8 +9,6 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
-@inject UserManager<ApplicationUser> UserManager
-@* @inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory *@
 @inject IDbContextFactory<ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -20,13 +18,12 @@
 <h1>Crearea cererii</h1>
 
 <p></p>
-<h2>Sunteți logat ca: @UserEmail</h2>
+<h2>Sunteți logat ca: @UserName</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <EditForm method="post" Model="Cerere" OnValidSubmit="AddCerere" FormName="create" Enhance>
             <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert"/>
             <div class="mb-3">
                 <label for="firstname" class="form-label">Prenume:</label> 
                 <InputText id="firstname" @bind-Value="Cerere.FirstName" class="form-control" /> 
@@ -50,15 +47,15 @@
 
 
             <div class="mb-3">
-                <label for="categoryid" class="form-label">Categorie:</label>
-                <InputSelect id="categoryid" @bind-Value="Cerere.CategoryId" class="form-control">
+                <label for="category" class="form-label">Categorie:</label>
+                <InputSelect id="categoryid" @bind-Value="Cerere.Category" class="form-control">
                     <option></option>
                     @foreach (var category in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
                     {
-                        <option value="@((int)category)">@category</option>
+                        <option value="@category.ToString()">@category.ToString()</option>
                     }
                 </InputSelect>
-                <ValidationMessage For="() => Cerere.CategoryId" class="text-danger" />
+                <ValidationMessage For="() => Cerere.Category" class="text-danger" />
             </div>
 
             <button type="submit" class="btn btn-primary">Trimite</button>
@@ -71,10 +68,9 @@
 </div>
 
 @code {
-    [SupplyParameterFromForm]
-    private Cerere Cerere { get; set; } = new();
-    private String UserEmail="";
-    public string errorMessage = "";
+        [SupplyParameterFromForm]
+        private Cerere Cerere { get; set; } = new();
+    private String UserName="";
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -82,13 +78,15 @@
 
         if (user.Identity?.IsAuthenticated == true)
         {
-            var appUser = await UserManager.GetUserAsync(user);
-            if (appUser != null)
-            {
-                UserEmail = appUser.Email;
-                Cerere.UserId = appUser.Id;
-                Cerere.Message = "";
-            }
+            UserName = string.Concat(user.FindFirst(c => c.Type == "FirstName")?.Value ?? "Anonim", " ",
+            user.FindFirst(c => c.Type == "LastName")?.Value ?? "Anonim");
+            //user.FindFirst(c => c.Type == "Username")?.Value ?? "example@mail.com"; // Username este IDNP
+            Cerere.Message = "";
+            Cerere.FirstName = user.FindFirst(c => c.Type == "FirstName")?.Value ?? "";
+            Cerere.LastName = user.FindFirst(c => c.Type == "LastName")?.Value ?? "";
+            Cerere.IDNP = user.FindFirst(c => c.Type == "Username")?.Value ?? "";
+            Cerere.BirthDate = DateTime.Parse(user.FindFirst(c => c.Type == "BirthDate")?.Value ?? "");
+
         }
     }
     private async Task AddCerere()
@@ -103,7 +101,7 @@
         )
         {
             Cerere.CreateTime = DateTime.Today;
-            Cerere.StateId = 1;
+            Cerere.State = StareEnum.Schita.ToString();
             context.Cerere.Add(Cerere);
             await context.SaveChangesAsync();
             NavigationManager.NavigateTo("/cererea");

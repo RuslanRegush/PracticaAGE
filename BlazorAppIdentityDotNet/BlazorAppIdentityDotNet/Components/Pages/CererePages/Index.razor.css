@@ -1,0 +1,17 @@
+﻿.modal {
+    z-index: 1050 !important;
+}
+
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.table {
+    z-index: 1;
+    position: relative;
+    overflow: auto;
+}
+.quick-grid-container {
+    position: relative;
+    z-index: 1 !important;
+}

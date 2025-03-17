@@ -20,6 +20,8 @@ C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\Blaz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\BlazorAppIdentityDotNet.runtimeconfig.json
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\BlazorAppIdentityDotNet.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\BlazorAppIdentityDotNet.pdb
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\Age.Extensions.Configuration.dll
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\Age.Integrations.MPass.Saml.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\Azure.Identity.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\bin\Debug\net9.0\Humanizer.dll
@@ -265,6 +267,7 @@ C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\Blaz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.AssemblyInfo.cs
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.csproj.CoreCompileInputs.cache
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.sourcelink.json
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\bundle\BlazorAppIdentityDotNet.styles.css
@@ -296,7 +299,6 @@ C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\Blaz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\kkxdy4jgpi-j5mq2jizvt.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\1v0h6wk9u1-06098lyss8.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\xdpct70k7i-nvvlpmu67g.gz
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\sm3bss6hsa-s35ty4nyc5.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\njflcbxbxv-pj5nd1wqec.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\5pl5nan20r-46ein0sx1k.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\q1u0sslndu-v0zj4ognzu.gz
@@ -317,8 +319,6 @@ C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\Blaz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\xe2oezpn98-63fj8s7r0e.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\wjqg7in7cb-0j3bgjxly4.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\3gin1ph7ub-25o87uqmvr.gz
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\0d9khkx242-h591hx2sdq.gz
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\eqxmqib2gi-t8oxrrmwh9.gz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -328,10 +328,16 @@ C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\Blaz
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.BlazorAppIdentityDotNet.props
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.BlazorAppIdentityDotNet.props
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAp.C3CC010C.Up2Date
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\refint\BlazorAppIdentityDotNet.dll
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.pdb
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\BlazorAppIdentityDotNet.genruntimeconfig.cache
 C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\ref\BlazorAppIdentityDotNet.dll
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\Components\Layout\UserInfoBar.razor.rz.scp.css
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\Components\Pages\CererePages\Index.razor.rz.scp.css
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\sm3bss6hsa-s35ty4nyc5.gz
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\scopedcss\Components\Layout\ModalDiolog.razor.rz.scp.css
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\0d9khkx242-hfmnrdhjds.gz
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\compressed\eqxmqib2gi-f0bqbhh8rl.gz
+C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -47,21 +47,22 @@ else
                 </div>
                 <div class="mb-3">
                     <label for="categoryid" class="form-label">Categorie:</label>
-                    <InputSelect id="categoryid" @bind-Value="Cerere.CategoryId" class="form-control">
+                    <InputSelect id="categoryid" @bind-Value="Cerere.Category" class="form-control">
                         <option></option>
                         @foreach (var category in Enum.GetValues(typeof(CategorieEnum)).Cast<CategorieEnum>())
                         {
-                            <option value="@((int)category)">@category</option>
+                            <option value="@category.ToString()">@category.ToString()</option>
                         }
                     </InputSelect>
+                    <ValidationMessage For="() => Cerere.Category" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="stateid" class="form-label">Stare:</label>
-                    <InputSelect id="stateid" @bind-Value="Cerere.StateId" class="form-control">
+                    <InputSelect id="stateid" @bind-Value="Cerere.State" class="form-control">
                         <option></option>
                         @foreach (var state in Enum.GetValues(typeof(StareEnum)).Cast<StareEnum>())
                         {
-                            <option value="@((int)state)">@state</option>
+                            <option value="@state.ToString()">@state.ToString()</option>
                         }
                     </InputSelect>
                 </div>
@@ -97,6 +98,7 @@ else
     private async Task UpdateCerere()
     {
         using var context = DbFactory.CreateDbContext();
+        if (Cerere.Message != "" && Cerere.State != "Respins") Cerere.Message = "";
         context.Attach(Cerere!).State = EntityState.Modified;
 
         try

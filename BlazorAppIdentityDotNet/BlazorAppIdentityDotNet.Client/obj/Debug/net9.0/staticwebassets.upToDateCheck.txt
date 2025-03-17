@@ -1,4 +1,0 @@
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet.Client\wwwroot\appsettings.Development.json
-C:\Users\rusla\source\repos\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet\BlazorAppIdentityDotNet.Client\wwwroot\appsettings.json
-wwwroot\appsettings.Development.json
-wwwroot\appsettings.json

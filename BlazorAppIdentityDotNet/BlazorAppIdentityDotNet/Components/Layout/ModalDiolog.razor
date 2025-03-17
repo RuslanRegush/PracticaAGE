@@ -1,0 +1,58 @@
+﻿<div class="modal-backdrop fade show"></div> <!-- Ensure it's rendered only when modal is visible -->
+
+<div class="modal fade show" id="myModal"
+style="display:block;"
+aria-modal="true" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Informație despre utilizator</h4>
+				<button type="button" class="btn-close" @onclick="@ModalCancel"></button>
+			</div>
+			<div class="modal-body">
+				<p>IDNP: @IDNP</p>
+				<p>Rolul: @role</p>
+				<p>Prenume: @firstName</p>
+				<p>Nume: @lastName</p>
+				<p>Sex: @sex</p>
+				<p>Data nașterii: @birthDate</p>
+				<p>Starea cererii: @stare</p>
+				@if (stare == "Respins")
+				{
+					<p>Cauza respingerii: @message</p>
+				}
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @onclick="@ModalOk">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+@code{
+	[Parameter]
+	public string IDNP{ get; set; }
+	[Parameter]
+	public string role { get; set; }
+	[Parameter]
+	public string firstName{ get; set; }
+	[Parameter]
+	public string lastName { get; set; }
+	[Parameter]
+	public string sex { get; set; }
+	[Parameter]
+	public string birthDate { get; set; }
+	[Parameter]
+	public EventCallback<bool> OnClose { get; set; }
+	[Parameter]
+	public string stare { get; set; }
+	[Parameter]
+	public string message { get; set; }
+	private Task ModalCancel()
+	{
+		return OnClose.InvokeAsync(false);
+	}
+	private Task ModalOk()
+	{
+		return OnClose.InvokeAsync(true);
+	}
+}

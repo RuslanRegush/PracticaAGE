@@ -1,0 +1,17 @@
+.modal[b-9c3jtrlxyr] {
+    z-index: 1050 !important;
+}
+
+.modal-backdrop[b-9c3jtrlxyr] {
+    z-index: 1040 !important;
+}
+
+.table[b-9c3jtrlxyr] {
+    z-index: 1;
+    position: relative;
+    overflow: auto;
+}
+.quick-grid-container[b-9c3jtrlxyr] {
+    position: relative;
+    z-index: 1 !important;
+}

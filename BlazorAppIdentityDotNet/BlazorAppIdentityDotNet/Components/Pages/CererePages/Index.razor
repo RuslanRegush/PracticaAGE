@@ -15,9 +15,6 @@
 
 <h1>Cereri</h1>
 
-<p>
-    <a href="cereres/create">Creați o cerere</a>
-</p>
 <div class="px-1">
     <h5>Numărul de lemente pe pagină</h5>
     <select class="form-select form-select-sm" @onchange="OnPageSizeChanged">
@@ -42,7 +39,7 @@
         <option value="">Ttoate statuturile</option>
         @foreach (var state in Enum.GetValues<StareEnum>())
         {
-            <option value="@state">@state</option>
+            <option value="@state.ToString()">@state.ToString()</option>
         }
     </select>
 
@@ -65,24 +62,22 @@
 </div>
 
 
-<QuickGrid Class="table"
+<QuickGrid Class="table" style="position: absolute;z-index: 1;"
            Items="@(itemsQueryable
     .Where(x =>
         (SelectedFilter == "FirstName" && x.FirstName.Contains(FilterText, StringComparison.OrdinalIgnoreCase))
-        || (SelectedFilter == "LastName" && x.LastName.Contains(FilterText, StringComparison.OrdinalIgnoreCase)))
-    .Where(x => string.IsNullOrEmpty(SelectedStateFilter) || GetStateEnumName(x.StateId) == SelectedStateFilter)
+        || (SelectedFilter == "LastName" && x.LastName.Contains(FilterText, StringComparison.OrdinalIgnoreCase)))    
     .Where(x => (!StartDateFilter.HasValue || x.CreateTime.Date >= StartDateFilter.Value.Date)
         && (!EndDateFilter.HasValue || x.CreateTime.Date <= EndDateFilter.Value.Date))
+    .Where(x => string.IsNullOrEmpty(SelectedStateFilter) || x.State.ToString() == SelectedStateFilter)
     .AsQueryable())"
            Pagination="paginationState">
     <PropertyColumn Property="cerere => cerere.FirstName" Sortable="true" Title="Prenume" />
     <PropertyColumn Property="cerere => cerere.LastName" Sortable="true" Title="Nume" />
     <PropertyColumn Property="cerere => cerere.BirthDate" Title="Data nașterii" />
     <PropertyColumn Property="cerere => cerere.IDNP" Title="IDNP" />
-    <PropertyColumn Property="cerere => cerere.CategoryId" Sortable="true" Title="Categorie" />
-    <TemplateColumn Context="cerere" Title="Statut">
-            @GetStateEnumName(cerere.StateId)
-    </TemplateColumn>
+    <PropertyColumn Property="cerere => cerere.Category" Sortable="true" Title="Categorie" />
+    <PropertyColumn Property="cerere => cerere.State" Sortable="true" Title="Statut" />
     <PropertyColumn Property="cerere => cerere.Message" Title="Mesaj de restricție" />
     <PropertyColumn Property="cerere => cerere.CreateTime" Title="Data de creare" Format="dd-MM-yyyy hh:mm tt" Sortable="true" IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Descending" />
     
@@ -112,6 +107,7 @@
         context = DbFactory.CreateDbContext();
         itemsQueryable = context.Cerere.ToList();
         await LoadData();
+
     }
 
     public async Task LoadData()
@@ -121,9 +117,13 @@
     }
 
 
-    public string GetStateEnumName(int stateId)
+    public string GetStateEnumName(int state)
     {
-        return Enum.GetName(typeof(StareEnum), stateId) ?? "Unknown";
+        if (Enum.IsDefined(typeof(StareEnum), state))
+        {
+            return ((StareEnum)state).ToString();
+        }
+        return "Unknown";
     }
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();

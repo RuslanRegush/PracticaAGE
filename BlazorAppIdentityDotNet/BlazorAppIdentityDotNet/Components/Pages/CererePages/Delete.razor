@@ -34,16 +34,12 @@
             <dd class="col-sm-10">@cerere.IDNP</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-2">CategoryId</dt>
-            <dd class="col-sm-10">@cerere.CategoryId</dd>
+            <dt class="col-sm-2">Category</dt>
+            <dd class="col-sm-10">@cerere.Category</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-2">StateId</dt>
-            <dd class="col-sm-10">@cerere.StateId</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">UserId</dt>
-            <dd class="col-sm-10">@cerere.UserId</dd>
+            <dt class="col-sm-2">State</dt>
+            <dd class="col-sm-10">@cerere.State</dd>
         </dl>
         <EditForm method="post" Model="cerere" OnValidSubmit="DeleteCerere" FormName="delete" Enhance>
             <button type="submit" class="btn btn-danger" disabled="@(cerere is null)">Delete</button> |

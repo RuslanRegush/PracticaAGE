@@ -28,8 +28,8 @@ namespace Microsoft.AspNetCore.Routing
                 [FromForm] string returnUrl) =>
             {
                 IEnumerable<KeyValuePair<string, StringValues>> query = [
-                    new("ReturnUrl", returnUrl),
-                    new("Action", ExternalLogin.LoginCallbackAction)];
+                    new("ReturnUrl", returnUrl)/*,
+                    new("Action", ExternalLogin.LoginCallbackAction)*/];
 
                 var redirectUrl = UriHelper.BuildRelative(
                     context.Request.PathBase,
@@ -40,14 +40,14 @@ namespace Microsoft.AspNetCore.Routing
                 return TypedResults.Challenge(properties, [provider]);
             });
 
-            accountGroup.MapPost("/Logout", async (
-                ClaimsPrincipal user,
-                [FromServices] SignInManager<ApplicationUser> signInManager,
-                [FromForm] string returnUrl) =>
-            {
-                await signInManager.SignOutAsync();
-                return TypedResults.LocalRedirect($"~/{returnUrl}");
-            });
+            //accountGroup.MapPost("/Logout", async (
+            //    ClaimsPrincipal user,
+            //    [FromServices] SignInManager<ApplicationUser> signInManager,
+            //    [FromForm] string returnUrl) =>
+            //{
+            //    await signInManager.SignOutAsync();
+            //    return TypedResults.LocalRedirect($"~/{returnUrl}");
+            //});
 
             var manageGroup = accountGroup.MapGroup("/Manage").RequireAuthorization();
 

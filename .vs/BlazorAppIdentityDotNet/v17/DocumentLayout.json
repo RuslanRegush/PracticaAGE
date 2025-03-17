@@ -3,16 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\data\\models\\stareenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\data\\models\\stareenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\components\\pages\\cererepages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\components\\pages\\cererepages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|c:\\users\\rusla\\source\\repos\\blazorappidentitydotnet\\blazorappidentitydotnet\\blazorappidentitydotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{860E917C-8266-47D6-9515-755A901CC87D}|BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet.csproj|solutionrelative:blazorappidentitydotnet\\blazorappidentitydotnet\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_BlazorAppIdentityDotNet/True/SqlTable/dbo.Cerere.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +26,37 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Program.cs",
-              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Program.cs",
-              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Program.cs",
-              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Program.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAuwFUAAAAAAAAAAAAAAA==",
+              "Title": "StareEnum.cs",
+              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Data\\Models\\StareEnum.cs",
+              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Data\\Models\\StareEnum.cs",
+              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Data\\Models\\StareEnum.cs",
+              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Data\\Models\\StareEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T12:13:59.452Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\appsettings.Development.json",
-              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-25T12:13:16.373Z",
+              "WhenOpened": "2025-03-17T08:38:39.356Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
-              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-20T09:15:50.307Z",
+              "Title": "dbo.Cerere [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/aspnet_BlazorAppIdentityDotNet/True/SqlTable/dbo.Cerere.sql",
+              "ToolTip": "dbo.Cerere [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-17T08:23:31.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.razor",
+              "DocumentMoniker": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Components\\Pages\\CererePages\\Index.razor",
+              "RelativeDocumentMoniker": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Components\\Pages\\CererePages\\Index.razor",
+              "ToolTip": "C:\\Users\\rusla\\source\\repos\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Components\\Pages\\CererePages\\Index.razor",
+              "RelativeToolTip": "BlazorAppIdentityDotNet\\BlazorAppIdentityDotNet\\Components\\Pages\\CererePages\\Index.razor",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAADsAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-17T08:13:47.996Z",
               "EditorCaption": ""
             }
           ]

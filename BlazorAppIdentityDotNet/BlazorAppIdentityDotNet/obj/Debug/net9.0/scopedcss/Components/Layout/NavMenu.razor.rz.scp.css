@@ -102,24 +102,37 @@
 }
 
 .nav-scrollable[b-6ama7zemkf] {
-    display: none;
+    position: sticky; /* Keep it in place */
+    top: 3.5rem; /* Prevent overlap with the user info bar */
+    left: 0;
+    width: 200px; /* Default width */
+    height: calc(100vh - 3.5rem); /* Adjust height dynamically */
+/*    background-color: rgba(0, 0, 0, 0.9);  */
+    overflow-y: auto; /* Allow scrolling if needed */
+    padding-top: 1rem;
+    z-index: 1000; /* Ensure it stays on top */
 }
-
+body[b-6ama7zemkf] {
+    margin-left: 250px; /* Same width as nav */
+}
 .navbar-toggler:checked ~ .nav-scrollable[b-6ama7zemkf] {
     display: block;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 768px) {
     .navbar-toggler[b-6ama7zemkf] {
         display: none;
     }
 
     .nav-scrollable[b-6ama7zemkf] {
         /* Never collapse the sidebar for wide screens */
-        display: block;
-
+/*        display: block;*/
+        width: 200px;
         /* Allow sidebar to scroll for tall menus */
-        height: calc(100vh - 3.5rem);
+/*        height: calc(100vh - 3.5rem);*/
         overflow-y: auto;
+    }
+    body[b-6ama7zemkf] {
+        margin-left: 200px;
     }
 }

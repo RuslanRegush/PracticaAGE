@@ -1,25 +1,11 @@
 ﻿@page "/auth"
-@inject NavigationManager NavigationManager
-
-@using Microsoft.AspNetCore.Authorization
-
-@attribute [Authorize]
-@rendermode InteractiveAuto
-
-<PageTitle>Cerere</PageTitle>
-
-<h1>Cererea dumneavoastră </h1>
+@* @using Microsoft.AspNetCore.Components.Authorization *@
 
 <AuthorizeView>
-    Bun venit @context.User.Identity?.Name!
-    <p></p>
-    <button type="button" class="btn btn-primary" @onclick="LinkToCreateCerere">Cerere nouă</button>
-    <button type="button" class="btn btn-primary" @onclick="LinkToCreateCerere">Editează cererea</button>
-
+    <Authorized>
+        <p>Welcome, @context.User.Identity.Name!</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>Please log in.</p>
+    </NotAuthorized>
 </AuthorizeView>
-@code{
-    private async Task LinkToCreateCerere()
-    {
-        NavigationManager.NavigateTo("/cereres/create");
-    }
-}

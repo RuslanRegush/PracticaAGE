@@ -1,0 +1,124 @@
+﻿@implements IDisposable
+@using Microsoft.AspNetCore.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@using BlazorAppIdentityDotNet.Data.Models
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<BlazorAppIdentityDotNet.Data.ApplicationDbContext> DbFactory
+@rendermode InteractiveServer
+PersonCircle
+ArrowBarRight
+ArrowBarLeft
+<div class="container-fluid bi">
+    <div class="user-info-bar">
+        <AuthorizeView>
+            <Authorized>
+                <div>
+                    <button type="button" class="buttonPerson" @onclick="OpenDialog">
+                        @* <span class="bi bi-person-circle"> </span> *@
+                        <span class="fw-bold">@userRole </span>
+                    </button>
+                </div>
+                <a href="Account/Logout">
+                    <button class="buttonUserInfoBar">
+                        <span class="bi bi-arrow-bar-left" style="font-size: 15px;"> </span>
+                    </button>
+                </a>
+            </Authorized>
+            <NotAuthorized>
+                <a href="Account/Login">
+                    <button class="buttonUserInfoBar">
+
+                        <span class="bi bi-arrow-bar-right" style="font-size: 15px;"></span>
+                    </button>
+                </a>
+            </NotAuthorized>
+        </AuthorizeView>
+        <label for="languageSelect" class="me-2"> Limba:</label>
+        <select id="languageSelect" class="form-select d-inline-block w-auto" @onchange="ChangeLanguage">
+            <option value="ro">Română</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+</div>
+@if (DialogOpen)
+{
+    <ModalDiolog IDNP="@idnp" role="@userRole" firstName="@userFirstName" lastName="@userLastName" sex="@sex" birthDate="@birthDate" stare="@requestState" message="@requestMessage" OnClose="@CloseDialog"></ModalDiolog>
+}
+@code {
+    public bool DialogOpen { get; set; }
+    private bool isAdmin = false;
+    public string idnp="";
+    public string userRole="";
+    public string userFirstName="";
+    public string userLastName="";
+    public string sex="";
+    public string birthDate="";
+    public string? requestState { get; set; }
+    public string requestMessage = "";
+    private Cerere? Cerere { get; set; }
+    private void CloseDialog()
+    {
+        DialogOpen = false;
+        StateHasChanged();
+    }
+    private void OpenDialog()
+    {
+        DialogOpen = true;
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        isAdmin = user.IsInRole("Admin");
+        idnp = user.FindFirst(c => c.Type == "Username")?.Value ?? "Anonim";
+        userRole = user.FindFirst(c => c.Type == "Role")?.Value ?? "Anonim";
+        birthDate = user.FindFirst(c => c.Type == "BirthDate")?.Value ?? "Anonim";
+        userFirstName = user.FindFirst(c => c.Type == "FirstName")?.Value ?? "Anonim";
+        userLastName = user.FindFirst(c => c.Type == "LastName")?.Value ?? "Anonim";
+        sex = user.FindFirst(c => c.Type == "Gender")?.Value ?? "Anonim";
+        //sexul Male, se transmite ca 1, atunci restul vor fi female
+        if (sex == "1") sex = "Male";
+        else sex = "Female";
+        try
+        {
+            using var context = DbFactory.CreateDbContext();
+            var userId = user.FindFirst(c => c.Type == "Username")?.Value ?? "";
+            if (string.IsNullOrEmpty(userId))
+            {
+                Console.WriteLine("User ID not found.");
+                return;
+            }
+
+            Cerere = await context.Cerere.FirstOrDefaultAsync(c => c.IDNP == userId);
+
+            if (Cerere == null)
+            {
+                Console.WriteLine("No Cerere found for this user.");
+            }
+            else
+            {
+                requestState = Cerere.State;
+                requestMessage = Cerere.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+
+    public void Dispose()
+    {
+    }
+    public void openUser()
+    {
+    }
+    public void ChangeLanguage(ChangeEventArgs e)
+    {
+        var selectedLanguage = e.Value?.ToString();
+    }
+}
